@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>ARTIK Cloud based Smart Parking System</title> 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <link href="https://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+        <script src="websocket_client.js"></script>
+		<style>
+        .container {
+            margin-top: 100px;
+        }
+        .jumbotron
+        {
+            margin-top: 10px;
+            padding-top: 10px;
+        }
+		indigoParking {
+			display: block;
+			background-color: #dddddd;
+			padding: 30px;
+			font-size: 70px;
+			line-height: 60%;
+			margin-left:200px;
+			margin-right:100px;
+			border-style: groove;
+		}
+        div.right {
+            background-color: #dddddd; 
+            width:360px;  
+            height:400px;	
+            margin-top:20px;	
+            margin-bottom:100px;			  
+        }
+        </style>
+    </head>
+    <body onload="javascript:init()">
+            <nav class="navbar fixed-top navbar-expand-sm bg-dark navbar-dark ">
+                <img src="car.png" />
+                    <h1 style="color:white;text-align:center;">Smart Parking System</h1>
+            </nav>
+        <div class="container">
+              <h1 style="line-height: 30%; color:white;margin-left:40px">1</h1>
+              <h3 id="add"></h3>
+			  <h3 style="line-height: 10%; margin-left:40px;margin-bottom:20px;text-align:center;">Kumaraswamy Layout,Bangalore</h3>
+              <indigoParking id="indigo">Receiving Data...</indigoParking>
+        </div>  
+        <div class="jumbotron"> 
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="right">
+                        <div id="map" style="width:100%;height:100%"></div>
+                    </div> 		    
+                    <div id = "websocketelements">
+                        <div id="attributes_log"> </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <h4>Output Console:</h4>
+                    <div id="close">
+                        <a href="javascript:onClose()"><button class="btn btn-primary btn-sm">Close connection</button></a>
+                    </div>
+                        <div id="output"></div>
+                </div>  
+            </div>
+        </div>    
+        </body>    
+		<script>
+          function myMap() {
+          var mapCanvas = document.getElementById("map");
+          var mapOptions = {
+          center: new google.maps.LatLng(12.908162,77.566584),
+          zoom: 11
+          }
+          var map = new google.maps.Map(mapCanvas, mapOptions);
+		  var indigo_marker = new google.maps.Marker({
+          // The below line is equivalent to writing:
+          // position: new google.maps.LatLng(-34.397, 150.644)
+          position: {lat: 12.906204, lng: 77.567231},
+          map: map
+          });
+          
+		  google.maps.event.addListener(map, 'click', function (event) {
+        //alert(event.latLng);          
+        geocoder.geocode({
+            'latLng': event.latLng
+        }, function (results, status) {
+            if (status ==
+                google.maps.GeocoderStatus.OK) {
+                    alert(results[0].formatted_address);
+            } else {
+                alert('Geocoder failed due to: ' + status);
+            }
+        });
+    });
+		  document.getElementById("add").innerHTML = results[0].formatted_address;
+		}
+        </script>
+
+        <script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+		
+    </body>
+</html>

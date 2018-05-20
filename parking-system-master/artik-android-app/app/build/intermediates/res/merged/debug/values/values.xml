@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <string name="app_name">Parking Lot Finder</string>
+    <string name="click">login</string>
+    <string name="getlatest_btn_txt">Find Parking Lot</string>
+    <string name="getlatest_response_mdata">data </string>
+    <string name="getlatest_response_mid">id </string>
+    <string name="hello_world">Please login to ARTIK Cloud</string>
+    <string name="play_with_messages">Smart Parking System</string>
+    <string name="send_btn_txt">send a message</string>
+    <string name="sendmsg_response">Response </string>
+    <string name="welcome_txt">Welcome </string>
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+</resources>
